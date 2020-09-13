@@ -21,7 +21,7 @@ Limitation: distances are based on "as the crow flies" and not driving direction
 
 Loading so many libraries. Originally I tried to use the positionstack.com API tool, and eventually got frustrated and gave up.
 
-```{r Startup, echo=FALSE, include=FALSE}
+```{r Startup, include=FALSE}
 library(tidyverse)
 library(httr)
 library(RJSONIO)
@@ -39,25 +39,6 @@ library(leaflet)
 library(maps)
 library(ggmap)
 
-```
-
-```{Setup code}
-library(tidyverse)
-library(httr)
-library(RJSONIO)
-library(jsonlite)
-library(RCurl)
-library(curl)
-library(rvest)
-library(lazyeval)
-library(gsubfn)
-library(sjlabelled)
-library(tmaptools)
-library(TSP)
-library(tspmeta)
-library(leaflet)
-library(maps)
-library(ggmap)
 ```
 
 Reading in my data - in this case a very simple list of addresses from Starbucks.
@@ -143,7 +124,7 @@ Used 2-opt (https://en.wikipedia.org/wiki/2-opt) because that's what the sample 
 
 
 You can plot these results, but I didn't find them user friendly:
-```{r plot the solve, echo=FALSE}
+```{r plot the solve}
 autoplot(tsp.ins, tour) 
 ```
 
@@ -165,7 +146,7 @@ sbux.order <- merge(sbux_tmaptools, df.tour, by=c("store_number"))
 ```
 
 And now, output the map, with a popup of addresses and a label showing the order in which they should be visited. 
-```{r map with leaflet, echo = FALSE}
+```{r map with leaflet}
 leaflet() %>% 
   addTiles() %>% 
   addProviderTiles("Esri.WorldGrayCanvas") %>%
